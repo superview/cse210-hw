@@ -10,5 +10,6 @@ class Program
         Prompt p = new Prompt();
         string random_prompt = p.GetRandom();
         Console.WriteLine($"This is a random quote: {random_prompt}");
+        p.Display();
     }
 }
