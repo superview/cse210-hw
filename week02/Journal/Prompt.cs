@@ -16,10 +16,10 @@ public class Prompt
         , "Who did you lift up today?"
         , "Write about an accomplishment that makes you happy."
     };
-    public void AddPrompt(string response)
+    public void AddPrompt(string prompt)
     {
         // string jabber = "yabbaDabbaDo!";
-        _prompts.Add(response);
+        _prompts.Add(prompt);
     }
 
     // Prompts constructor
