@@ -13,7 +13,9 @@ public class Entry
     public Entry()
     {
         // Call for a new random quote
-        Console.WriteLine("Entry constructor.");
+        Console.WriteLine("in Entry");
+        // _prompt = p.GetRandom();
+
     }
 
     public void Display()
