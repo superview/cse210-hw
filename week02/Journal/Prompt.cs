@@ -1,20 +1,21 @@
 using System;
-// using System.Collections.Generic;
-// using Microsoft.VisualBasic;
-
-// using System.Runtime.CompilerServices;
-// using System.Security.Cryptography.X509Certificates;
+//using System.Collections.Generic;
 
 public class Prompt
 {
      public List<string> _prompts = new List<string>(){
         "What did you do today?"
-        , "What are you happy about today?"
-        , "What are you sad about today?"
-        , "What new thing did you learn about today?"
-        , "What are you grateful for today?"
-        , "Who did you lift up today?"
-        , "Write about an accomplishment that makes you happy."
+        , "What am I happy about today?"
+        , "What am I sad about today?"
+        , "What new thing did I learn about today?"
+        , "What am I grateful for today?"
+        , "Who did I lift up today?"
+        , "Write about an accomplishment that makes me happy."
+        , "Who was the most interesting person I interacted with today?"
+        , "What was the best part of my day?"
+        , "How did I see the hand of the Lord in my life today?"
+        , "What was the strongest emotion I felt today?"
+        , "If I had one thing I could do over today, what would it be?"
     };
     public void AddPrompt(string prompt)
     {
@@ -25,14 +26,10 @@ public class Prompt
     // Prompts constructor
     public Prompt()
     {
-        Console.WriteLine($"Prompts constructor.");
-
     }
 
     public void Display()
     {
-        Console.WriteLine("prompt display:");
-
         // foreach... write prompt.
         foreach (string s in _prompts)
         {
@@ -42,9 +39,6 @@ public class Prompt
     public string GetRandom()
     {
         // Return a randomly selected prompt
-
-        Console.WriteLine("Getting random string...");
-
         // Generate random index in the range of the _prompts list
         Random rand_number = new Random();
         int index = rand_number.Next(_prompts.Count);

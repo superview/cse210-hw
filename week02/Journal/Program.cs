@@ -1,14 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
+// using System.Security.Cryptography.X509Certificates;
+using System.IO;
+using System.Text.Json;
+
+/// <summary>
+/// Exceeding Requirements
+// Write entries to a json file
+// Automatically read entries from the json file upon startup
+// Save the entry date in DateTime object for flexible and more accurate timestamping
+/// </summary>
+/// 
+
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the Journal Project.");
         DateTime now = DateTime.Now;
         Entry e = new Entry();
+        string file = "journal.json"; // save location
         Journal j = new Journal();
         Prompt p = new Prompt();
         p.AddPrompt("ya baby yeah!");
@@ -19,13 +30,14 @@ class Program
 
         // Present menu and get action from user
         Boolean _loop = true;
+        Console.WriteLine($"\nWelcome to your Journal!");
         while (_loop)
         {
-            Console.WriteLine($"Welcome to your Journal!\nPlease select from the following actions: ");
-            // Console.WriteLine("1. Write");
-            // Console.WriteLine("2. Display");
-            // Console.WriteLine("3. Load");
-            // Console.WriteLine("4. Save");
+            Console.WriteLine($"Please select from the following actions: ");
+            Console.WriteLine("1. Write");
+            Console.WriteLine("2. Display");
+            Console.WriteLine("3. Load");
+            Console.WriteLine("4. Save");
             Console.WriteLine("5. Quit");
             Console.Write("Enter a number: ");
             string input = "";
@@ -46,20 +58,26 @@ class Program
                         // Display all entries
                         foreach (Entry je in j.entries)
                         {
-                            Console.WriteLine("----- Entry --------------");
-                            Console.WriteLine($"  Prompt: {je._prompt}\nEntry:   {je._entry}");
+                            Console.WriteLine("\n----- Entry --------------");
+                            Console.WriteLine($"Date: {je._created.ToShortDateString()}    Prompt: {je._prompt}\nEntry:   {je._entry}");
                         }
                         break;
                     case 3:
                         // Load from json file
-                        Console.WriteLine("selected 3");
+                        j.Load(file);
+                        
                         break;
                     case 4:
                         // Save to json file
-                        Console.WriteLine("selected 4");
+                            // file = "journal.json"; // save location
+
+                        // either one of the following works to save the file
+                        SaveToFile(j,file);
+                        // j.Save(file);
+
                         break;
                     case 5:
-                        Console.WriteLine("selected 5");
+                        Console.WriteLine("Exiting.");
                         _loop = false;
                         break;
                     default:
@@ -71,14 +89,13 @@ class Program
         }
 
     }
+    static void SaveToFile(Journal j, string file)
+    {
+        string jsonString = JsonSerializer.Serialize(j.entries, new JsonSerializerOptions {WriteIndented = true});
+        File.WriteAllText(file, jsonString);
+        Console.WriteLine(jsonString);
+    }
 
 
-    // j.AddEntry();
 
-    // p.Display();
-    // string _menu = ("1. Write"
-    // 2. Display
-    // 3. Load
-    // 4. Save
-    // 5. Quit")}
 }
