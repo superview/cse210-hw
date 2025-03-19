@@ -21,23 +21,23 @@ public class Scripture
 
         Console.WriteLine("Enter the book: ");
         string book = Console.ReadLine();
-        aVerse.SetBook(book);
+        aVerse.Book = book;
 
         Console.WriteLine("Enter the scripture content: ");
         string content = Console.ReadLine();
-        aVerse.SetContent(content);
+        aVerse.Content = content;
 
         Console.WriteLine("Enter the chapter: ");
         string chapter = Console.ReadLine();
-        aVerse.SetChapter(chapter);
+        aVerse.Chapter = chapter;
 
         Console.WriteLine("Enter the chapter: ");
         string verse = Console.ReadLine();
-        aVerse.SetVerse(verse);
+        aVerse.verse = verse;
 
         verses.Add(aVerse);
-        Console.WriteLine($"Book: {aVerse.Book} {aVerse.Chapter}:{aVerse.GetVerse()}");
-        Console.WriteLine($"Scripture Text:\n{aVerse.GetContent()}");
+        Console.WriteLine($"Book: {aVerse.Book} {aVerse.Chapter}:{aVerse.verse}");
+        Console.WriteLine($"Scripture Text:\n{aVerse.Content}");
         return aVerse;
     }
     public void Save(string file)
@@ -75,8 +75,8 @@ public class Scripture
         foreach (Verse v in verses)
         {
             Console.WriteLine("\n");
-            Console.WriteLine($"{v.Book} {v.Chapter}:{v.GetVerse()}");
-            Console.WriteLine($"{v.GetContent()}");
+            Console.WriteLine($"{v.Book} {v.Chapter}:{v.verse}");
+            Console.WriteLine($"{v.Content}");
         }
     }
     public void DisplayAll()
@@ -84,8 +84,8 @@ public class Scripture
         foreach (Verse v in verses)
         {
             Console.WriteLine("\n");
-            Console.WriteLine($"{v.Book} {v.Chapter}:{v.GetVerse()}");
-            Console.WriteLine($"{v.GetContent()}");
+            Console.WriteLine($"{v.Book} {v.Chapter}:{v.verse}");
+            Console.WriteLine($"{v.Content}");
             string aaa = v.Book;
             Console.WriteLine($"The aaa is: {aaa}");
         }

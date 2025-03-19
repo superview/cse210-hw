@@ -16,39 +16,43 @@ public class Verse
     public string Book
     {
         get { return _book; }
+        set { _book = value; }
     }
     public string Chapter
     {
         get { return _chapter; }
+        set { _chapter = value; }
     }
-    public string GetVerse()
+    public string verse
     {
-        return _verse;
+        get { return _verse; }
+        set { _verse = value; }
     }
-    public string GetContent()
+    public string Content
     {
-        return _content;
+        get { return _content; }
+        set { _content = value; }
     }
-    public void SetBook(string book)
-    {
-        _book = book;
+    // public void SetBook(string book)
+    // {
+    //     _book = book;
 
-    }
-    public void SetChapter(string chapter)
-    {
-        _chapter = chapter;
+    // }
+    // public void SetChapter(string chapter)
+    // {
+    //     _chapter = chapter;
 
-    }
-    public void SetVerse(string verse)
-    {
-        _verse = verse;
+    // }
+    // public void SetVerse(string verse)
+    // {
+    //     _verse = verse;
 
-    }
-    public void SetContent(string content)
-    {
-        _content = content;
+    // }
+    // public void SetContent(string content)
+    // {
+    //     _content = content;
 
-    }
+    // }
 
 
 
