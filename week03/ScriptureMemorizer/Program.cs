@@ -60,6 +60,17 @@ class Program
                     _loop = false;
                     break;
 
+                case ConsoleKey.D6:
+                case ConsoleKey.NumPad6:
+                case ConsoleKey.T:
+                    Console.WriteLine("Testing.");
+                    Word aword = new Word("this_is_a_word");
+                    Console.WriteLine(aword.GetDisplayText());
+                    aword.Hide();
+                    Console.WriteLine(aword.GetDisplayText());
+                    
+                    break;
+
                 default:
                     Console.WriteLine("Something went wrong. Please try again");
                     break;

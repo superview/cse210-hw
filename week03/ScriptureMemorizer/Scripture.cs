@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 
 public class Scripture
@@ -35,7 +31,7 @@ public class Scripture
 
         Console.WriteLine("Enter the chapter: ");
         string verse = Console.ReadLine();
-        aVerse.Verse_number= verse;
+        aVerse.Verse_number = verse;
 
         verses.Add(aVerse);
         Console.WriteLine($"Book: {aVerse.Book} {aVerse.Chapter}:{aVerse.Verse_number}");
