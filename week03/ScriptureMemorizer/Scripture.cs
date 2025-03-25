@@ -1,12 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text.Json;
 
 
 public class Scripture
 {
     // Scripture is a list of verses
-    public List<Verse> verses {get; set;} = new List<Verse>();
-    string file = "scriptures.json";
+    public List<Verse> _verses {get; set;} = new List<Verse>();
 
     public Scripture()
     {
@@ -19,34 +20,33 @@ public class Scripture
     {
         Verse aVerse = new Verse();
 
-        Console.WriteLine("Enter the book: ");
-        string book = Console.ReadLine();
-        aVerse.Book = book;
+        // Console.WriteLine("Enter the book: ");
+        // string book = Console.ReadLine();
+        // aVerse.SetBook(book);
 
-        Console.WriteLine("Enter the scripture content: ");
-        string content = Console.ReadLine();
-        aVerse.Content = content;
+        // Console.WriteLine("Enter the scripture content: ");
+        // string content = Console.ReadLine();
+        // aVerse.Content = content;
 
-        Console.WriteLine("Enter the chapter: ");
-        string chapter = Console.ReadLine();
-        aVerse.Chapter = chapter;
+        // Console.WriteLine("Enter the chapter: ");
+        // string chapter = Console.ReadLine();
+        // aVerse.Chapter = chapter;
 
-        Console.WriteLine("Enter the chapter: ");
-        string verse = Console.ReadLine();
-        aVerse.verse = verse;
+        // Console.WriteLine("Enter the chapter: ");
+        // string verse = Console.ReadLine();
+        // aVerse.verse = verse;
 
-        verses.Add(aVerse);
+        // verses.Add(aVerse);
         Console.WriteLine($"Book: {aVerse.Book} {aVerse.Chapter}:{aVerse.verse}");
         Console.WriteLine($"Scripture Text:\n{aVerse.Content}");
         return aVerse;
     }
     public void Save(string file)
     {
-        string jsonString = JsonSerializer.Serialize(verses, new JsonSerializerOptions {WriteIndented = true});
+        string jsonString = JsonSerializer.Serialize(_verses, new JsonSerializerOptions {WriteIndented = true});
         File.WriteAllText(file, jsonString);
         Console.WriteLine(jsonString);
         Console.WriteLine("Saved to file: " + file);
-
     }
     public void Load(string file)
     {
@@ -54,7 +54,7 @@ public class Scripture
         {
             using (StreamReader reader = new StreamReader(file))
             {
-                verses = JsonSerializer.Deserialize<List<Verse>>(reader.ReadToEnd());
+                _verses = JsonSerializer.Deserialize<List<Verse>>(reader.ReadToEnd());
             }
             // Success loading file
             Console.WriteLine($"{file} loaded.");
@@ -67,12 +67,12 @@ public class Scripture
     public int GetRandomScripture()
     {
         Random rand = new Random();
-        int selected = rand.Next(1, verses.Count);
+        int selected = rand.Next(1, _verses.Count);
         return selected;
     }
     public void DisplayR()
     {
-        foreach (Verse v in verses)
+        foreach (Verse v in _verses)
         {
             Console.WriteLine("\n");
             Console.WriteLine($"{v.Book} {v.Chapter}:{v.verse}");
@@ -81,7 +81,7 @@ public class Scripture
     }
     public void DisplayAll()
     {
-        foreach (Verse v in verses)
+        foreach (Verse v in _verses)
         {
             Console.WriteLine("\n");
             Console.WriteLine($"{v.Book} {v.Chapter}:{v.verse}");

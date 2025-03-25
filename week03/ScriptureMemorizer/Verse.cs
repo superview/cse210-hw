@@ -3,10 +3,10 @@ using System.Net;
 
 public class Verse
 {
-    private string _book;
-    private string _chapter;
-    private string _verse;
-    private string _content;
+    public string _book;
+    public string _chapter;
+    public string _verse;
+    public string _content;
 
     // Verse constructor
     public Verse()
@@ -16,22 +16,22 @@ public class Verse
     public string Book
     {
         get { return _book; }
-        set { _book = value; }
+        private set { _book = value; }
     }
     public string Chapter
     {
         get { return _chapter; }
-        set { _chapter = value; }
-    }
+        private set { _chapter = value; }
+    } 
     public string verse
     {
         get { return _verse; }
-        set { _verse = value; }
+        private set { _verse = value; }
     }
     public string Content
     {
         get { return _content; }
-        set { _content = value; }
+        private set { _content = value; }
     }
     // public void SetBook(string book)
     // {
