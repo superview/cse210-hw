@@ -3,10 +3,10 @@ using System.Net;
 
 public class Verse
 {
-    public string _book {get; set;}
-    public string _chapter {get; set;}
-    public string _verse {get; set;}
-    public string _content {get; set;}
+    private string _book;
+    private string _chapter;
+    private string _verse;
+    private string _content;
 
     // Verse constructor
     public Verse()

@@ -58,7 +58,7 @@ public class Scripture
             Console.WriteLine("\n");
             foreach (var v in verses)
             {
-                Console.WriteLine($"This is the reference: {v._book} {v._chapter} {v._verse}");
+                Console.WriteLine($"This is the reference: {v.Book} {v.Chapter} {v.Verse_number}");
             }
             // Success loading file
             Console.WriteLine($"{file} loaded.");
@@ -85,14 +85,12 @@ public class Scripture
     }
     public void DisplayAll()
     {
-        Console.WriteLine($"The number of verses: {verses.Count}");
+        Console.WriteLine("\n");
         foreach (Verse v in verses)
         {
             Console.WriteLine("\n");
-            Console.WriteLine($"{v._book} {v.Chapter}:{v.Verse_number}");
+            Console.WriteLine($"{v.Book} {v.Chapter}:{v.Verse_number}");
             Console.WriteLine($"{v.Content}");
-            string aaa = v.Book;
-            Console.WriteLine($"The aaa is: {aaa}");
         }
     }
     
