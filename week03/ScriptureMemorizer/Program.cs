@@ -18,6 +18,7 @@ class Program
             Console.WriteLine("3. Load");
             Console.WriteLine("4. Save");
             Console.WriteLine("5. Quit");
+            Console.WriteLine("6. Test");
             Console.Write("Enter a number or the first character from the menu: ");
 
             ConsoleKeyInfo choice = Console.ReadKey(true);
@@ -68,7 +69,20 @@ class Program
                     Console.WriteLine(aword.GetDisplayText());
                     aword.Hide();
                     Console.WriteLine(aword.GetDisplayText());
-                    
+                    // create scripture objects
+                    Scripture script1 = new Scripture();
+
+                    // create verse object and add to scripture
+                    Verse verse1 = new Verse();
+                    script1.verses.Add(verse1);
+
+                    // create a word object
+                    // Word word1 = new Word("aword8");
+                    // words.Add(word1);
+                    // script1.verses.words.Add(new Word {"aword"});
+
+
+
                     break;
 
                 default:
