@@ -47,5 +47,3 @@ public class Journal
         entries = JsonSerializer.Deserialize<List<Entry>>(jsonString);
         Console.WriteLine($"{file} loaded.");
     }
-
-}
