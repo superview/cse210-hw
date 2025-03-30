@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 class Program
 {
@@ -7,7 +8,17 @@ class Program
         bool _loop = true;
         Console.Clear();
         Console.WriteLine("Hello World! This is the ScriptureMemorizer Project.");
-        Scripture _scripture = new Scripture(new Reference( "Book",  4, 33),"This is a scripture verse text.......");
+        
+        // create list of scriptures
+        List<Scripture> _scripture_list = new List<Scripture> ();
+        // create first scripture
+        string scripture_input1 = "And men are instructed sufficiently that they know good from evil. And the law is given unto men. And by the law no flesh is justified; or, by the law men are cut off. Yea, by the temporal law they were cut off; and also, by the spiritual law they perish from that which is good, and become miserable forever.";
+        Scripture _scripture = new Scripture(new Reference( "2 Nephi",  2, 5), scripture_input1);
+        _scripture_list.Add(_scripture);
+
+        // add with inline content
+        _scripture_list.Add(new Scripture(new Reference("Kings",12,15,23), "some sort of text"));
+        
         // string file = "scriptures.json";
 
         while (_loop)
@@ -38,7 +49,10 @@ class Program
                 case ConsoleKey.NumPad2:
                 case ConsoleKey.D:
                     // Display all entries
-                    _scripture.DisplayAll();
+                    foreach(Scripture s in _scripture_list)
+                    {
+                        s.DisplayAll();
+                    }
                     break;
 
                 case ConsoleKey.D3:

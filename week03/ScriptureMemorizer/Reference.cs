@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 
 public class Reference
 {
@@ -7,6 +8,9 @@ public class Reference
     private int _verse;
     private int _endVerse;
 
+    public Reference()
+    {
+    }
     public Reference(string book, int chapter, int verse)
     {
         _book = book;
@@ -20,9 +24,25 @@ public class Reference
         _verse = startVerse;
         _endVerse = endVerse;
     }
+    public void SetReference(string book, int chapter, int verse)
+    {
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+        Console.WriteLine("----------------------------------");
+        Console.WriteLine($"In SetReference. Book: {_book} {_chapter}:{_verse}");
+        Console.WriteLine("----------------------------------");
+    }
     public string DisplayAll()
     {
-        return _book + " " + _chapter + ":" + _verse;
+        if( _endVerse > 0 )
+        {
+            return _book + " " + _chapter + ":" + _verse + "-" + _endVerse;
+        }
+        else
+        {
+            return _book + " " + _chapter + ":" + _verse;
+        }
     }
 
 }

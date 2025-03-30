@@ -3,26 +3,23 @@ using System.Text.Json;
 
 public class Scripture
 {
-    private Reference _reference { get; set; } = new("boooook",3,24);
+    // private Reference _reference { get; set; } = new("boooook",3,24);
+    private Reference _reference = new();
+    // private Reference _reference = new("boooook",3,24);
     private List<Word> Words { get; set; } = new List<Word>();
-    public Scripture(Reference _reference, string text)
+    public Scripture(Reference ref1, string text)
     {
         // string file = "scriptures.json";
-        
-        //    _reference = ((string)"Book 1", (int) 2, (int) 22);
-        string scripture_input1 = "And men are instructed sufficiently that they know good from evil. And the law is given unto men. And by the law no flesh is justified; or, by the law men are cut off. Yea, by the temporal law they were cut off; and also, by the spiritual law they perish from that which is good, and become miserable forever.";
-        foreach(string w in scripture_input1.Split())
+        _reference = ref1;
+
+        // add words using the word object
+        foreach(string w in text.Split())
         {
-            Words.Add(new Word(w, true));
+            Words.Add(new Word(w, false));
         }
         // Load(file);
     }
 
-    public void setReference(string book, int chapter, int verse)
-    {
-        // _reference = (book, chapter, verse)
-
-    }
     public void HideRandomWords(int numberToHide)
     {
         // 
@@ -100,7 +97,7 @@ public class Scripture
 
     public void DisplayAll()
     {
-        Console.WriteLine("\n");
+        Console.WriteLine("------------------------------------------\n");
         Console.WriteLine($"Reference: {_reference.DisplayAll()}");
         foreach (Word w in Words)
         {
