@@ -7,8 +7,8 @@ class Program
         bool _loop = true;
         Console.Clear();
         Console.WriteLine("Hello World! This is the ScriptureMemorizer Project.");
-        Scripture _scripture = new Scripture();
-        string file = "scriptures.json";
+        Scripture _scripture = new Scripture(new Reference( "Book",  4, 33),"This is a scripture verse text.......");
+        // string file = "scriptures.json";
 
         while (_loop)
         {
@@ -30,7 +30,8 @@ class Program
                 case ConsoleKey.NumPad1:
                 case ConsoleKey.A:
                     // Add a verse
-                    _scripture.AddVerse();
+                    // _scripture.AddVerse();
+                    Console.WriteLine("NOT IMPLEMENTED");
                     break;
 
                 case ConsoleKey.D2:
@@ -44,14 +45,16 @@ class Program
                 case ConsoleKey.NumPad3:
                 case ConsoleKey.L:
                     // Load from json file
-                    _scripture.Load(file);
+                    // _scripture.Load(file);
+                    Console.WriteLine("NOT IMPLEMENTED");
                     break;
 
                 case ConsoleKey.D4:
                 case ConsoleKey.NumPad4:
                 case ConsoleKey.S:
                     // Save to json file
-                    _scripture.Save(file);
+                    // _scripture.Save(file);
+                    Console.WriteLine("NOT IMPLEMENTED");
                     break;
 
                 case ConsoleKey.D5:
@@ -69,19 +72,6 @@ class Program
                     Console.WriteLine(aword.GetDisplayText());
                     aword.Hide();
                     Console.WriteLine(aword.GetDisplayText());
-                    // create scripture objects
-                    Scripture script1 = new Scripture();
-
-                    // create verse object and add to scripture
-                    Verse verse1 = new Verse();
-                    script1.verses.Add(verse1);
-
-                    // create a word object
-                    // Word word1 = new Word("aword8");
-                    // words.Add(word1);
-                    // script1.verses.words.Add(new Word {"aword"});
-
-
 
                     break;
 

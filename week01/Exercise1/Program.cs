@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
@@ -10,5 +11,11 @@ class Program
         string lname = Console.ReadLine();
 
         Console.WriteLine($"Your name is {fname}, {fname} {lname}.");
+        Person p = new Person();
+        
+        string aaa = p.GetInformalSignature();
+        Console.WriteLine(aaa);
+        Console.WriteLine($"{p.GetFormalSignature()}");
+
     }
 }

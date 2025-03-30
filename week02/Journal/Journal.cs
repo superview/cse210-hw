@@ -1,13 +1,15 @@
 using System;
 using System.Text.Json;
 using System.IO;
+using System.Collections.Generic;
 // using System.Runtime.InteropServices.Marshalling;
 // using System.Dynamic;
 
 public class Journal
 {
     // public List<Entry> entries = new List<Entry>();
-    public List<Entry> entries {get; set;} = new List<Entry>();
+    public List<Entry> entries {get; set;} = new List<entries>();
+    public List<Entry> entries2 = new List<entries2>();
     // Journal constructor
     public Journal()
     {
