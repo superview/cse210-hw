@@ -43,6 +43,9 @@ class Program
                     // Add a verse
                     // _scripture.AddVerse();
                     Console.WriteLine("NOT IMPLEMENTED");
+                    _scripture.HideRandomWords(3);
+                    
+
                     break;
 
                 case ConsoleKey.D2:

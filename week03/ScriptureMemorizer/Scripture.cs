@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 
 public class Scripture
@@ -23,7 +24,15 @@ public class Scripture
     public void HideRandomWords(int numberToHide)
     {
         // 
+        Console.WriteLine($"Word count: {Words.Count}");
+        int counter = 0;
 
+        Words[2].Hide();
+
+        foreach(Word h in Words)
+        {
+
+        }
     }
 
     public string GetDisplayText()
