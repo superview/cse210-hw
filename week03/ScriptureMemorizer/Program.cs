@@ -6,27 +6,32 @@ class Program
     static void Main(string[] args)
     {
         bool _loop = true;
+        int scripture_selection = 0;
         Console.Clear();
         Console.WriteLine("Hello World! This is the ScriptureMemorizer Project.");
-        
+        int scripture_count = 0; 
         // create list of scriptures
         List<Scripture> _scripture_list = new List<Scripture> ();
         // create first scripture
         string scripture_input1 = "And men are instructed sufficiently that they know good from evil. And the law is given unto men. And by the law no flesh is justified; or, by the law men are cut off. Yea, by the temporal law they were cut off; and also, by the spiritual law they perish from that which is good, and become miserable forever.";
         Scripture _scripture = new Scripture(new Reference( "2 Nephi",  2, 5), scripture_input1);
         _scripture_list.Add(_scripture);
+        scripture_count ++;
+        
 
         // add with inline content
         _scripture_list.Add(new Scripture(new Reference("Kings",12,15,23), "some sort of text"));
+        scripture_count ++;
         
         // string file = "scriptures.json";
+
 
         while (_loop)
         {
             Console.WriteLine($"Please select from the following actions: ");
-            Console.WriteLine("1. Add a verse to the library");
-            Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
+            Console.WriteLine("1. Hide a random word");
+            Console.WriteLine("2. Display all scriptures");
+            Console.WriteLine("3. Select a random scripture");
             Console.WriteLine("4. Save");
             Console.WriteLine("5. Quit");
             Console.WriteLine("6. Test");
@@ -40,11 +45,24 @@ class Program
                 case ConsoleKey.D1:
                 case ConsoleKey.NumPad1:
                 case ConsoleKey.A:
-                    // Add a verse
-                    // _scripture.AddVerse();
-                    Console.WriteLine("NOT IMPLEMENTED");
-                    _scripture.HideRandomWords(3);
+                    // Hide another word if there are still words to hide
+                    if(_scripture_list[scripture_selection].visible_words>0)
+                    {
+                        _scripture_list[scripture_selection].HideRandomWords();
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n++++++++++++++++++++++++++++++++++");
+                        Console.WriteLine("Congratulations! You have hidden all the words.\nExiting.");
+                        _loop = false;
+                        break;
+                    }
                     
+                    _scripture_list[scripture_selection].DisplayAll();
+                    
+                    
+                    //_scripture.HideRandomWords(3);
+
 
                     break;
 
@@ -63,7 +81,11 @@ class Program
                 case ConsoleKey.L:
                     // Load from json file
                     // _scripture.Load(file);
-                    Console.WriteLine("NOT IMPLEMENTED");
+
+                    // select a random scripture
+                    // scripture_count ++;
+                    scripture_selection = _scripture.GetRandomScripture(scripture_count);
+
                     break;
 
                 case ConsoleKey.D4:

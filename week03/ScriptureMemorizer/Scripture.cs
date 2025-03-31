@@ -8,6 +8,7 @@ public class Scripture
     private Reference _reference = new();
     // private Reference _reference = new("boooook",3,24);
     private List<Word> Words { get; set; } = new List<Word>();
+    public int visible_words;
     public Scripture(Reference ref1, string text)
     {
         // string file = "scriptures.json";
@@ -18,21 +19,29 @@ public class Scripture
         {
             Words.Add(new Word(w, false));
         }
+        visible_words = Words.Count;
         // Load(file);
     }
 
-    public void HideRandomWords(int numberToHide)
+    public void HideRandomWords()
     {
-        // 
-        Console.WriteLine($"Word count: {Words.Count}");
-        int counter = 0;
-
-        Words[2].Hide();
-
-        foreach(Word h in Words)
+        Random rand = new Random();
+        int selected = rand.Next(0, Words.Count);
+        bool loop_condition = true;
+        // while(! Words[selected].IsHidden())
+        while(loop_condition)
         {
-
+            selected = rand.Next(0, Words.Count);
+            if(! Words[selected].IsHidden())
+            {
+                Words[selected].Hide();
+                visible_words --;
+                loop_condition = false;
+                Console.WriteLine($"This is the number of visible: {visible_words}");
+            }
+            // loop_condition = false;
         }
+
     }
 
     public string GetDisplayText()
@@ -97,13 +106,7 @@ public class Scripture
     //         Console.WriteLine($"Initial load of scriptures could not be completed. {ex.Message}");
     //     }
     // }
-    public int GetRandomScripture()
-    {
-        Random rand = new Random();
-        int selected = rand.Next(1, Words.Count);
-        return selected;
-    }
-
+   
     public void DisplayAll()
     {
         Console.WriteLine("------------------------------------------\n");
@@ -117,4 +120,11 @@ public class Scripture
         Console.WriteLine("\n");
     }
     
+    public int GetRandomScripture(int count)
+        {
+            Random rand = new Random();
+            int selected = rand.Next(0, count);
+            return selected;
+        }
+
 }
