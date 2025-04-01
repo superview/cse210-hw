@@ -20,24 +20,28 @@ class Program
         
 
         // add with inline content
-        _scripture_list.Add(new Scripture(new Reference("Kings",12,15,23), "some sort of text"));
+        _scripture_list.Add(new Scripture(new Reference("Proverbe",15,1), "A soft answer turneth away wrath: but grievous words stir up anger."));
         scripture_count ++;
         
-        // string file = "scriptures.json";
-
-
+        _scripture_list.Add(new Scripture(new Reference("1 John",1,1,5), "In the beginning was the Word, and the Word was with God, and the Word was God.  2 The same was in the beginning with God.  3 All things were made by him; and without him was not any thing made that was made. In him was life; and the life was the light of men. And the light shineth in darkness; and the darkness comprehended it not."));
+        scripture_count ++;
+        
+        _scripture_list.Add(new Scripture(new Reference("Moroni",10,4,5), "And when ye shall receive these things, I would exhort you that ye would ask God, the Eternal Father, in the name of Christ, if these things are not true; and if ye shall ask with a sincere heart, with real intent, having faith in Christ, he will manifest the truth of it unto you, by the power of the Holy Ghost. And by the power of the Holy Ghost ye may know the truth of all things."));
+        scripture_count ++;
+        
         while (_loop)
         {
             Console.WriteLine($"Please select from the following actions: ");
             Console.WriteLine("1. Hide a random word");
             Console.WriteLine("2. Display all scriptures");
             Console.WriteLine("3. Select a random scripture");
-            Console.WriteLine("4. Save");
-            Console.WriteLine("5. Quit");
-            Console.WriteLine("6. Test");
+            // Console.WriteLine("4. Save");
+            Console.WriteLine("4. Quit");
+            // Console.WriteLine("6. Test");
             Console.Write("Enter a number or the first character from the menu: ");
 
             ConsoleKeyInfo choice = Console.ReadKey(true);
+            Console.Clear();
 
             // // Get user choice from command line menu
             switch (choice.Key)
@@ -58,6 +62,7 @@ class Program
                         break;
                     }
                     
+                    Console.Clear();
                     _scripture_list[scripture_selection].DisplayAll();
                     
                     
@@ -79,25 +84,11 @@ class Program
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
                 case ConsoleKey.L:
-                    // Load from json file
-                    // _scripture.Load(file);
-
-                    // select a random scripture
-                    // scripture_count ++;
                     scripture_selection = _scripture.GetRandomScripture(scripture_count);
-
                     break;
 
                 case ConsoleKey.D4:
                 case ConsoleKey.NumPad4:
-                case ConsoleKey.S:
-                    // Save to json file
-                    // _scripture.Save(file);
-                    Console.WriteLine("NOT IMPLEMENTED");
-                    break;
-
-                case ConsoleKey.D5:
-                case ConsoleKey.NumPad5:
                 case ConsoleKey.Q:
                     Console.WriteLine("Exiting.");
                     _loop = false;
@@ -111,7 +102,6 @@ class Program
                     Console.WriteLine(aword.GetDisplayText());
                     aword.Hide();
                     Console.WriteLine(aword.GetDisplayText());
-
                     break;
 
                 default:
