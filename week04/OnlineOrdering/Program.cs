@@ -5,10 +5,12 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Hello World! This is the OnlineOrdering Project.");
+        // first order uses constructor with default product list
         Address address1 = new Address("1546 Henderson Rd.","Fayetteville","TN.","USA");
         Customer customer1 = new Customer("Ramond Bettinger", address1);
         Order order1 = new Order(customer1);
 
+        // second order uses constructor with products
         Product p1 = new Product("Bicycle", 5444, 130.24,1);
         Product p2 = new Product("Mouse Pad", 9832, 3.49,10);
         Product p3 = new Product("File Folder", 2981, 53.24,40);
