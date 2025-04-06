@@ -18,7 +18,7 @@ public class Product
     }
     public void Display()
     {
-        Console.WriteLine($"{_name} {_price:F2} {_quantity}");
+        Console.WriteLine($"{_name} {_price:F2} {_quantity} {_price * _quantity:F2}");
     }
     public float GetCost()
     {
