@@ -16,13 +16,29 @@ public class Product
         _price = price;
         _quantity = quantity;
     }
-    public void Display()
+    public void Display(string options = "d")
     {
-        Console.WriteLine($"{_name} {_price:F2} {_quantity} {_price * _quantity:F2}");
+        if(options == "d")
+        {
+            Console.WriteLine("{0, -6}{1, -18}{2,10:C2}{3,-4}{4,5}{5,15:C2}", _productId, _name, _price, "", _quantity, _price * _quantity);
+        }
+        if(options == "p")
+        {
+            Console.WriteLine("{0, -6}{1, -18}{2,10}", _productId, _name, _quantity);
+        }
     }
-    public float GetCost()
+    public string GetProductPack()
     {
-        return (float) 2.22;
+        return "\n" + _productId + "   " + _name + "   " + _quantity;
+    }
+    public double GetCost()
+    {
+        double _productCost = _price * _quantity;
+        return (double) _productCost;
+    }
+    public int GetQuantity()
+    {
+        return _quantity;
     }
 
 }

@@ -24,6 +24,10 @@ public class Address
         Console.WriteLine(_street);
         Console.WriteLine($"{_city}, {_state_province}");
     }
+    public string GetAddress()
+    {
+        return _street + '\n' + _city + ',' + _state_province;
+    }
     public bool IsUSA()
     {
         if(_country == "USA")

@@ -8,14 +8,18 @@ public class Customer
         _Address = a;
 
     }
+    public string GetCustomer()
+    {
+        return _name + '\n' + _Address.GetAddress();
+    }
     public bool IsUSA()
     {
-        return true;
+        return _Address.IsUSA();
 
     }
     public void Display()
     {
         Console.WriteLine(_name);
-        // _Address.Display();
+        _Address.Display();
     }
 }
