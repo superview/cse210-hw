@@ -7,6 +7,10 @@ public class Assignment
         _studentName = name;
         _topic = topic;
     }
+    public string GetTopic()
+    {
+        return _topic;
+    }
     public string GetStudentName()
     {
         return _studentName;

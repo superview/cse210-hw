@@ -7,6 +7,6 @@ public class WritingAssignment : Assignment
     }
     public string GetWritingAssignment()
     {
-        return $"{_title} writing assignment ...";
+        return $"\"{_title}\" writing assignment by {base.GetStudentName()}";
     }
 }
