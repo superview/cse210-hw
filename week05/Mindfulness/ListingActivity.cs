@@ -1,4 +1,4 @@
-public class ListingActivity
+public class ListingActivity : Activity
 {
     private int _count;
     private List<string> _prompts;
@@ -20,10 +20,10 @@ public class ListingActivity
             , "If I had one thing I could do over today, what would it be?"
         };
 
-        foreach(string p in _prompts)
-        {
-            Console.WriteLine(p);
-        }
+        // foreach(string p in _prompts)
+        // {
+        //     Console.WriteLine(p);
+        // }
     }
     public void Run()
     {
@@ -31,11 +31,15 @@ public class ListingActivity
     }
     public void GetRandomPrompt()
     {
-
+        Random _rnd = new Random();
+        int _index = _rnd.Next(_prompts.Count());
+        // Console.WriteLine(_index);
+        Console.WriteLine(_prompts[_index]);
     }
     public List<string> GetListFromUser()
     {
         List<string> _alist = new List<string>();
+        
 
         return _alist;
     }
