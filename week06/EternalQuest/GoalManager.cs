@@ -8,11 +8,6 @@ public class GoalManager
     }
     public void Start()
     {
-        EternalGoal _eg = new EternalGoal("EGoal","This is a goal.", "12");
-        Console.WriteLine("Menu Loop");
-        Console.WriteLine(_eg.GetDetailsString());
-        Console.WriteLine(_eg.GetStringRepresentation());
-
 
         // Present menu and get action from user
         Boolean _loop = true;
@@ -29,8 +24,8 @@ public class GoalManager
             Console.Write("Enter a number: ");
             
             ConsoleKeyInfo choice = Console.ReadKey(true);
-            Console.Clear();
 
+            Console.Clear();
             Console.WriteLine($"You chose option key: {choice.KeyChar}");
             // Get user choice from cl menu
             switch (choice.Key)
@@ -40,17 +35,82 @@ public class GoalManager
                 case ConsoleKey.N:
                     // Create new goal
                     // j.AddEntry();
+                    Console.WriteLine("\nEnter the type of goal you would like to add:");
+                    Console.WriteLine("1. Simple Goal");
+                    Console.WriteLine("2. Eternal Goal");
+                    Console.WriteLine("3. Checklist Goal");
+                    ConsoleKeyInfo _inner_choice = Console.ReadKey(true);
+
+                    Console.Clear();
+                    Console.WriteLine($"You chose option key: {_inner_choice.KeyChar}");
+                    switch (_inner_choice.Key)
+                    {
+                        case ConsoleKey.D1:
+                        case ConsoleKey.NumPad1:
+                        case ConsoleKey.S:
+                        Console.WriteLine($"New Simple Goal");
+                        Console.WriteLine($"Enter a new Simple Goal name: ");
+                        string _inputName = Console.ReadLine();
+                        Console.WriteLine($"Enter a description: ");
+                        string _inputDescription = Console.ReadLine();
+                        Console.WriteLine($"Enter number of points: ");
+                        string _inputPoints = Console.ReadLine();
+                        SimpleGoal _sg = new SimpleGoal(_inputName, _inputDescription, _inputPoints);
+                        _goals.Add(_sg);
+                        Console.WriteLine(_sg.GetDetailsString());
+                        Console.WriteLine(_sg.GetStringRepresentation());
+                        break;
+                        case ConsoleKey.D2:
+                        case ConsoleKey.NumPad2:
+                        case ConsoleKey.E:
+                        Console.WriteLine($"New Eternal Goal");
+                        Console.WriteLine($"Enter a new Eternal Goal name: ");
+                        string _inputEgName = Console.ReadLine();
+                        Console.WriteLine($"Enter a description: ");
+                        string _inputEgDescription = Console.ReadLine();
+                        Console.WriteLine($"Enter number of points: ");
+                        string _inputEgPoints = Console.ReadLine();
+                        EternalGoal _eg = new EternalGoal(_inputEgName, _inputEgDescription, _inputEgPoints);
+                        _goals.Add(_eg);
+                        Console.WriteLine(_eg.GetDetailsString());
+                        Console.WriteLine(_eg.GetStringRepresentation());
+                        break;
+                        case ConsoleKey.D3:
+                        case ConsoleKey.NumPad3:
+                        case ConsoleKey.C:
+
+                        Console.WriteLine($"New Checklist Goal");
+                        Console.WriteLine($"Enter a new Checklist Goal name: ");
+                        string _inputCgName = Console.ReadLine();
+                        Console.WriteLine($"Enter a description: ");
+                        string _inputCgDescription = Console.ReadLine();
+                        Console.WriteLine($"Enter number of points: ");
+                        string _inputCgPoints = Console.ReadLine();
+                        ChecklistGoal _cg = new ChecklistGoal(_inputCgName, _inputCgDescription, _inputCgPoints,1,4);
+                        _goals.Add(_cg);
+                        Console.WriteLine(_cg.GetDetailsString());
+                        Console.WriteLine(_cg.GetStringRepresentation());
+                        break;
+
+                        default:
+                            Console.WriteLine("Something went wrong. Please try again");
+                        break;
+                    }
 
                     break;
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:
                 case ConsoleKey.L:
-                        // List all goals
-                        // foreach (Entry je in j.entries)
-                        // {
-                            // Console.WriteLine("\n----- Entry --------------");
-                            // Console.WriteLine($"Date: {je._created.ToShortDateString()}    Prompt: {je._prompt}\nEntry:   {je._entry}");
-                        // }
+                    // List all goals
+                    int _counter = 1;
+                    foreach (Goal gg in _goals)
+                    {
+                        Console.WriteLine($"\n----- Goal Entry {_counter++} --------------");
+                        Console.WriteLine($"Name: {gg.GetName()}");
+                        Console.WriteLine($"Description: {gg.GetDescription()}");
+                        Console.WriteLine($"Points: {gg.GetPoints()}");
+
+                    }
                         break;
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
