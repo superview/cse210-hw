@@ -8,8 +8,8 @@ using System.Collections.Generic;
 public class Journal
 {
     // public List<Entry> entries = new List<Entry>();
-    public List<Entry> entries {get; set;} = new List<entries>();
-    public List<Entry> entries2 = new List<entries2>();
+    public List<Entry> entries {get; set;} = new List<Entry>();
+    public List<Entry> entries2 = new List<Entry>();
     // Journal constructor
     public Journal()
     {
@@ -49,3 +49,4 @@ public class Journal
         entries = JsonSerializer.Deserialize<List<Entry>>(jsonString);
         Console.WriteLine($"{file} loaded.");
     }
+}

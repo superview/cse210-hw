@@ -1,5 +1,8 @@
 using System.ComponentModel;
 
+namespace EternalQuest
+{
+
 public class ChecklistGoal : Goal
 {
     private int _amountCompleted;
@@ -21,8 +24,9 @@ public class ChecklistGoal : Goal
     {
         return "ChecklistGoal:GetDetailsString stub";
     }
-    public new string GetStringRepresentation()
+    public override string GetStringRepresentation()
     {
         return "ChecklistGoal:GetStringRepresentation stub";
     }
+}
 }

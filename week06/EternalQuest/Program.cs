@@ -1,5 +1,8 @@
 using System;
 
+namespace EternalQuest
+{
+
 class Program
 {
     static void Main(string[] args)
@@ -9,4 +12,5 @@ class Program
         _gm.Start();
 
     }
+}
 }

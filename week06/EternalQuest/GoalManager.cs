@@ -1,7 +1,18 @@
+using System.Collections.Generic;
+using System.IO;
+
+namespace EternalQuest
+{
+
+
 public class GoalManager
 {
-    private List<Goal> _goals = new List<Goal>();
+    // public List<Goal> _goals {get; set;} = new List<Goal>();
+    public List<Goal> _eGoals = new List<Goal>();
+    // public List<EternalGoal> _eGoals = [];
+    // public List<EternalGoal> _eGoals {get; set;} = [];
     private int _score;
+    private string _file = "goals.json"; // save location
     public GoalManager()
     {
 
@@ -56,7 +67,7 @@ public class GoalManager
                         Console.WriteLine($"Enter number of points: ");
                         string _inputPoints = Console.ReadLine();
                         SimpleGoal _sg = new SimpleGoal(_inputName, _inputDescription, _inputPoints);
-                        _goals.Add(_sg);
+                        // _goals.Add(_sg);
                         Console.WriteLine(_sg.GetDetailsString());
                         Console.WriteLine(_sg.GetStringRepresentation());
                         break;
@@ -71,7 +82,7 @@ public class GoalManager
                         Console.WriteLine($"Enter number of points: ");
                         string _inputEgPoints = Console.ReadLine();
                         EternalGoal _eg = new EternalGoal(_inputEgName, _inputEgDescription, _inputEgPoints);
-                        _goals.Add(_eg);
+                        _eGoals.Add(_eg);
                         Console.WriteLine(_eg.GetDetailsString());
                         Console.WriteLine(_eg.GetStringRepresentation());
                         break;
@@ -87,7 +98,7 @@ public class GoalManager
                         Console.WriteLine($"Enter number of points: ");
                         string _inputCgPoints = Console.ReadLine();
                         ChecklistGoal _cg = new ChecklistGoal(_inputCgName, _inputCgDescription, _inputCgPoints,1,4);
-                        _goals.Add(_cg);
+                        // _goals.Add(_cg);
                         Console.WriteLine(_cg.GetDetailsString());
                         Console.WriteLine(_cg.GetStringRepresentation());
                         break;
@@ -103,7 +114,7 @@ public class GoalManager
                 case ConsoleKey.L:
                     // List all goals
                     int _counter = 1;
-                    foreach (Goal gg in _goals)
+                    foreach (Goal gg in _eGoals)
                     {
                         Console.WriteLine($"\n----- Goal Entry {_counter++} --------------");
                         Console.WriteLine($"Name: {gg.GetName()}");
@@ -115,19 +126,19 @@ public class GoalManager
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
                 case ConsoleKey.O:
-                        // List all goals
                         // Save Goals
-                        // file = "journal.json"; // save location
-                        // either one of the following works to save the file
-                        // SaveToFile(j,file);
-                        // j.Save(file);
+                        this.SaveGoals(_file);
                         
                         break;
                 case ConsoleKey.D4:
                 case ConsoleKey.NumPad4:
                 case ConsoleKey.A:
                         // Load Goals
-                        // j.Load(file);
+                        // this.LoadGoals(_file);
+                        foreach(Goal gg in _eGoals)
+                        {
+                            Console.WriteLine(gg.GetStringRepresentation());
+                        }
                         break;
                 case ConsoleKey.D5:
                 case ConsoleKey.NumPad5:
@@ -176,13 +187,19 @@ public class GoalManager
     {
 
     }
-    public void SaveGoals()
+    public void SaveGoals(string file)
     {
-
+        string aaa = "heyy";
+        File.WriteAllText(file, aaa);
+        Console.WriteLine(aaa);
+        Console.WriteLine("Saved to file: " + file);
     }
-    public void LoadGoals()
+
+
+    public void LoadGoals(string file)
     {
-
+        Console.WriteLine($"{file} loaded.");
     }
 
+}
 }

@@ -1,4 +1,7 @@
-public class SimpleGoal : Goal
+namespace EternalQuest
+{
+
+ public class SimpleGoal : Goal
 {
     private bool _isComplete;
     public SimpleGoal(string name, string description, string points) : base(name, description, points)
@@ -17,7 +20,7 @@ public class SimpleGoal : Goal
         return _isComplete;
 
     }
-    public new string GetStringRepresentation()
+    public override string GetStringRepresentation()
     {
         //todo:
         return $"{this.GetName()},{this.GetDescription()},{this.GetPoints()}";
@@ -31,4 +34,5 @@ public class SimpleGoal : Goal
         return _isComplete;
     }
 
+}
 }

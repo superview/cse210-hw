@@ -1,22 +1,24 @@
-public class EternalGoal : Goal
+namespace EternalQuest
 {
-    public EternalGoal(string name, string description, string points) : base(name, description, points)
-    {
-        
-    }
-    public new void RecordEvent()
-    {
-        //todo:
 
-    }
-    public new bool IsComplete()
+    public class EternalGoal : Goal
     {
-        //todo:
-        return true;
+        public EternalGoal(string name, string description, string points) : base(name, description, points)
+        { }
+        public new void RecordEvent()
+        {
+            //todo:
 
-    }
-    public new string GetStringRepresentation()
-    {
-        return $"{this.GetName()},{this.GetDescription()},{this.GetPoints()}";
+        }
+        public new bool IsComplete()
+        {
+            //todo:
+            return true;
+
+        }
+        public override string GetStringRepresentation()
+        {
+            return $"EternalGoal:{this.GetName()},{this.GetDescription()},{this.GetPoints()}";
+        }
     }
 }
