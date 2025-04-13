@@ -8,6 +8,10 @@ namespace EternalQuest
         public new void RecordEvent()
         {
             //todo:
+            // An event is completion of the goal
+            // It adds points.
+            // List open goals//
+
 
         }
         public new bool IsComplete()
