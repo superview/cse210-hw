@@ -38,6 +38,8 @@ public class GoalManager
 
             Console.Clear();
             Console.WriteLine($"You chose option key: {choice.KeyChar}");
+            int _inputCgTarget = 0;
+            int _inputCgBonus = 0;
             // Get user choice from cl menu
             switch (choice.Key)
             {
@@ -80,10 +82,13 @@ public class GoalManager
                         Console.WriteLine($"New Eternal Goal");
                         Console.WriteLine($"Enter a new Eternal Goal name: ");
                         string _inputEgName = Console.ReadLine();
+
                         Console.WriteLine($"Enter a description: ");
                         string _inputEgDescription = Console.ReadLine();
+
                         Console.WriteLine($"Enter number of points: ");
                         string _inputEgPoints = Console.ReadLine();
+
                         EternalGoal _eg = new EternalGoal(_inputEgName, _inputEgDescription, _inputEgPoints);
                         _eGoals.Add(_eg);
                         Console.WriteLine(_eg.GetDetailsString());
@@ -96,12 +101,31 @@ public class GoalManager
                         Console.WriteLine($"New Checklist Goal");
                         Console.WriteLine($"Enter a new Checklist Goal name: ");
                         string _inputCgName = Console.ReadLine();
+
                         Console.WriteLine($"Enter a description: ");
                         string _inputCgDescription = Console.ReadLine();
+
                         Console.WriteLine($"Enter number of points: ");
                         string _inputCgPoints = Console.ReadLine();
-                        ChecklistGoal _cg = new ChecklistGoal(_inputCgName, _inputCgDescription, _inputCgPoints,1,4);
-                        // _goals.Add(_cg);
+
+                        Console.WriteLine($"Enter number of Target: ");
+                        // string _inputCgTarget = Console.ReadLine();
+
+                        // convert string to int
+                        if (int.TryParse(Console.ReadLine(), out int _result))
+                        {
+                            _inputCgTarget = _result;
+                        }
+
+                        Console.WriteLine($"Enter number of Bonus: ");
+                        // convert string to int
+                        if (int.TryParse(Console.ReadLine(), out _result))
+                        {
+                            _inputCgBonus = _result;
+                        }
+
+                        ChecklistGoal _cg = new ChecklistGoal(_inputCgName, _inputCgDescription, _inputCgPoints,_inputCgTarget, _inputCgBonus);
+                        _eGoals.Add(_cg);
                         Console.WriteLine(_cg.GetDetailsString());
                         Console.WriteLine(_cg.GetStringRepresentation());
                         break;
@@ -147,6 +171,8 @@ public class GoalManager
                 case ConsoleKey.D5:
                 case ConsoleKey.NumPad5:
                     Console.WriteLine("Record Event");
+                    // stub
+
                     break;
                 case ConsoleKey.D6:
                 case ConsoleKey.NumPad6:
@@ -239,7 +265,28 @@ public class GoalManager
             }
             else if(_goalType == "ChecklistGoal")
             {
-                ChecklistGoal cGoal = new ChecklistGoal(parts[0], parts[1], parts[2], (int) parts[3]);
+                int _aTarget = 0;
+                int _aBonus = 0;
+                int result;
+                
+                // convert string to int
+                if (int.TryParse(parts[3], out result))
+                {
+                    _aTarget = result;
+                }
+
+                // convert string to int
+                if (int.TryParse(parts[4], out result))
+                {
+                    _aBonus = result;
+                }
+
+                ChecklistGoal cGoal = new ChecklistGoal(parts[0], parts[1], parts[2], _aTarget, _aBonus);
+                _eGoals.Add(cGoal);
+            }
+            else
+            {
+                Console.WriteLine("Something went wrong importing line. Skipping.");
             }
         }
         Console.WriteLine($"{file} loaded.");
