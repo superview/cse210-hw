@@ -7,7 +7,6 @@ namespace EternalQuest
     public SimpleGoal(string name, string description, string points) : base(name, description, points)
     {
         //todo:
-
     }
     public new void RecordEvent()
     {
@@ -23,7 +22,7 @@ namespace EternalQuest
     public override string GetStringRepresentation()
     {
         //todo:
-        return $"{this.GetName()},{this.GetDescription()},{this.GetPoints()}";
+        return $"SimpleGoal:{this.GetName()},{this.GetDescription()},{this.GetPoints()}";
     }
     public void completeIt()
     {

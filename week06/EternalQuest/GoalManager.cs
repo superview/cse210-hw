@@ -62,14 +62,17 @@ public class GoalManager
                         Console.WriteLine($"New Simple Goal");
                         Console.WriteLine($"Enter a new Simple Goal name: ");
                         string _inputName = Console.ReadLine();
+
                         Console.WriteLine($"Enter a description: ");
                         string _inputDescription = Console.ReadLine();
+
                         Console.WriteLine($"Enter number of points: ");
                         string _inputPoints = Console.ReadLine();
+
                         SimpleGoal _sg = new SimpleGoal(_inputName, _inputDescription, _inputPoints);
-                        // _goals.Add(_sg);
-                        Console.WriteLine(_sg.GetDetailsString());
-                        Console.WriteLine(_sg.GetStringRepresentation());
+                        _eGoals.Add(_sg);
+                        // Console.WriteLine(_sg.GetDetailsString());
+                        // Console.WriteLine(_sg.GetStringRepresentation());
                         break;
                         case ConsoleKey.D2:
                         case ConsoleKey.NumPad2:
@@ -134,11 +137,12 @@ public class GoalManager
                 case ConsoleKey.NumPad4:
                 case ConsoleKey.A:
                         // Load Goals
+                        this.LoadGoals(_file);
                         // this.LoadGoals(_file);
-                        foreach(Goal gg in _eGoals)
-                        {
-                            Console.WriteLine(gg.GetStringRepresentation());
-                        }
+                        // foreach(Goal gg in _eGoals)
+                        // {
+                            // Console.WriteLine(gg.GetStringRepresentation());
+                        // }
                         break;
                 case ConsoleKey.D5:
                 case ConsoleKey.NumPad5:
@@ -189,15 +193,55 @@ public class GoalManager
     }
     public void SaveGoals(string file)
     {
-        string aaa = "heyy";
-        File.WriteAllText(file, aaa);
-        Console.WriteLine(aaa);
+        string _allGoals = "";
+        foreach(Goal gString in _eGoals)
+        {
+            _allGoals += $"{gString.GetStringRepresentation()}\n";
+        }
+        File.WriteAllText(file, _allGoals);
+        Console.WriteLine(_allGoals);
         Console.WriteLine("Saved to file: " + file);
     }
 
 
     public void LoadGoals(string file)
     {
+        // Format of the goals files
+        // Eternal Gaol format
+        // EternalGoal:name,description,points
+        // 
+        // 
+        // // 
+        string[] lines = File.ReadAllLines(file);
+        // List<string> _importGoals = new List<string>(
+            // File.ReadAllLines(file)
+        // );
+        foreach(string line in lines)
+        {
+            // split off the type of goal
+            string[] _goalString = line.Split(':');
+            string _goalType = _goalString[0]; // This is the type of goal
+
+            // split out the goal details and send to the constructor
+            string[] parts = _goalString[1].Split(",");
+
+            Console.WriteLine($"Goal type:{_goalType}");
+            Console.WriteLine($"Goal details:{parts[0]}, {parts[1]}, {parts[2]}");
+            if(_goalType == "EternalGoal")
+            {
+                EternalGoal aeGoal = new EternalGoal(parts[0], parts[1], parts[2]);
+                _eGoals.Add(aeGoal);
+            }
+            else if(_goalType == "SimpleGoal")
+            {
+                SimpleGoal sGoal = new SimpleGoal(parts[0], parts[1], parts[2]);
+                _eGoals.Add(sGoal);
+            }
+            else if(_goalType == "ChecklistGoal")
+            {
+                ChecklistGoal cGoal = new ChecklistGoal(parts[0], parts[1], parts[2], (int) parts[3]);
+            }
+        }
         Console.WriteLine($"{file} loaded.");
     }
 
