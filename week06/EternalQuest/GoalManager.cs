@@ -225,15 +225,16 @@ namespace EternalQuest
             Console.WriteLine($"Please select from the following actions: ");
             foreach(Goal g in _eGoals)
             {
-                Console.WriteLine($"{_goalSelector ++}: Goal: {g.GetName}");
+                Console.WriteLine($"{_goalSelector ++}: Goal: {g.GetName()}");
             }
                 Console.Write("Enter a number: ");
 
                 ConsoleKeyInfo choice = Console.ReadKey(true);
-
-                Console.Clear();
                 Console.WriteLine($"You chose option key: {choice.KeyChar}");
-             
+
+                //HERE
+            int _choiceInt = choice.KeyChar - '0';  // 
+            Console.WriteLine($"Selected: '{_eGoals[_choiceInt].GetStringRepresentation()}'");
 
         }
         public void SaveGoals(string file)
