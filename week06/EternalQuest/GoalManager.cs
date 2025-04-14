@@ -227,14 +227,25 @@ namespace EternalQuest
             {
                 Console.WriteLine($"{_goalSelector ++}: Goal: {g.GetName()}");
             }
-                Console.Write("Enter a number: ");
+            Console.Write("Enter a number: ");
 
-                ConsoleKeyInfo choice = Console.ReadKey(true);
-                Console.WriteLine($"You chose option key: {choice.KeyChar}");
+            ConsoleKeyInfo choice = Console.ReadKey(true);
+            Console.WriteLine($"You chose option key: {choice.KeyChar}");
 
-                //HERE
-            int _choiceInt = choice.KeyChar - '0';  // 
+            //HERE
+            int _choiceInt = choice.KeyChar - '0';  // convert char to int
             Console.WriteLine($"Selected: '{_eGoals[_choiceInt].GetStringRepresentation()}'");
+            _eGoals[_choiceInt].IsComplete();
+            int _totalPoints = 0;
+            foreach(Goal t in _eGoals)
+            {
+                Console.WriteLine($"{t.GetName()} = {t.GetPoints()} points.");
+                if (t.IsComplete())
+                {
+                    _totalPoints += int.Parse(t.GetPoints());
+                }
+                Console.WriteLine($"Points = {_totalPoints}");
+            }
 
         }
         public void SaveGoals(string file)
