@@ -25,7 +25,10 @@ namespace EternalQuest
             // Present menu and get action from user
             Boolean _loop = true;
             Console.WriteLine($"\nWelcome to your Goals with Goal Quest!");
-            this.LoadGoals(_file);
+            if (File.Exists(_file))
+            {
+                this.LoadGoals(_file);
+            }
             Console.Clear();
 
             while (_loop)
