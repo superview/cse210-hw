@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace EternalQuest
@@ -13,6 +14,7 @@ namespace EternalQuest
         // public List<EternalGoal> _eGoals {get; set;} = [];
         private int _score;
         private string _file = "goals.json"; // save location
+        private int _totalPoints = 0; // total points collected from completed goals
         public GoalManager()
         {
 
@@ -23,6 +25,9 @@ namespace EternalQuest
             // Present menu and get action from user
             Boolean _loop = true;
             Console.WriteLine($"\nWelcome to your Goals with Goal Quest!");
+            this.LoadGoals(_file);
+            Console.Clear();
+
             while (_loop)
             {
                 Console.WriteLine($"Please select from the following actions: ");
@@ -31,7 +36,8 @@ namespace EternalQuest
                 Console.WriteLine("3. Save Goals");
                 Console.WriteLine("4. Load Goals");
                 Console.WriteLine("5. Record Event");
-                Console.WriteLine("6. Quit");
+                Console.WriteLine("6. Display Player Information");
+                Console.WriteLine("7. Quit");
                 Console.Write("Enter a number: ");
 
                 ConsoleKeyInfo choice = Console.ReadKey(true);
@@ -51,7 +57,9 @@ namespace EternalQuest
                     case ConsoleKey.NumPad2:
                     case ConsoleKey.L:
                         // List all goals
-                        NewMethod();
+                        ListGoalNames();
+                        ListGoalDetails();
+                        ListAllGoals();
                         break;
                     case ConsoleKey.D3:
                     case ConsoleKey.NumPad3:
@@ -76,6 +84,11 @@ namespace EternalQuest
                         break;
                     case ConsoleKey.D6:
                     case ConsoleKey.NumPad6:
+                    case ConsoleKey.D:
+                        DisplayPlayerfInfo();
+                        break;
+                    case ConsoleKey.D7:
+                    case ConsoleKey.NumPad7:
                     case ConsoleKey.Q:
                         Console.WriteLine("Exiting.");
                         _loop = false;
@@ -89,21 +102,34 @@ namespace EternalQuest
 
         }
 
-        private void NewMethod()
+        private void ListAllGoals()
         {
             int _counter = 1;
+            int _tPoints = 0;
             foreach (Goal gg in _eGoals)
             {
+
                 Console.WriteLine($"\n----- Goal Entry {_counter++} --------------");
-                Console.WriteLine($"Name: {gg.GetName()}");
+                Console.WriteLine($"Status: {gg.GetCheckbox()}  Name: {gg.GetName()}  Points: {gg.GetPoints()}");
                 Console.WriteLine($"Description: {gg.GetDescription()}");
-                Console.WriteLine($"Points: {gg.GetPoints()}");
+                // convert string to int
+                if (gg.IsComplete())
+                {
+
+                    if (int.TryParse(gg.GetPoints(), out int _result))
+                    {
+                        _tPoints += _result;
+                    }
+                }
 
             }
+            Console.WriteLine($">>> Points = {_tPoints}");
+            _totalPoints = _tPoints;
         }
 
         public void DisplayPlayerfInfo()
         {
+            Console.WriteLine($"Congratulations! You have {_totalPoints}");
 
         }
         public void ListGoalNames()
@@ -220,33 +246,48 @@ namespace EternalQuest
         {
             // Record event using the objects record event methods
             // Asks the user which goal they have done and then records the event by calling the RecordEvent method on that goal.
-            int _goalSelector = 1;
+            int _goalSelector = 1; // sequence to select a menu item
+            // Present menu
             Console.WriteLine("\nWhich goal have you completed.");
             Console.WriteLine($"Please select from the following actions: ");
-            foreach(Goal g in _eGoals)
+            // Build and present goal list with selector
+            foreach (Goal g in _eGoals)
             {
-                Console.WriteLine($"{_goalSelector ++}: Goal: {g.GetName()}");
+                Console.WriteLine($"{_goalSelector++}: Goal: {g.GetName()}");
             }
             Console.Write("Enter a number: ");
 
-            ConsoleKeyInfo choice = Console.ReadKey(true);
-            Console.WriteLine($"You chose option key: {choice.KeyChar}");
-
-            //HERE
-            int _choiceInt = choice.KeyChar - '0';  // convert char to int
-            Console.WriteLine($"Selected: '{_eGoals[_choiceInt].GetStringRepresentation()}'");
-            _eGoals[_choiceInt].IsComplete();
-            int _totalPoints = 0;
-            foreach(Goal t in _eGoals)
+            // Convert input to int
+            if (int.TryParse(Console.ReadLine(), out int _result))
             {
-                Console.WriteLine($"{t.GetName()} = {t.GetPoints()} points.");
+                _goalSelector = _result - 1; // minus 1 for zero base indexing
+            }
+            // show details of selected goal
+            Console.WriteLine($"Selected: '{_eGoals[_goalSelector].GetStringRepresentation()}'");
+
+            // mark selected goal completed
+            _eGoals[_goalSelector].RecordEvent();
+            Console.WriteLine($"Completed: {_eGoals[_goalSelector].GetStringRepresentation()}");
+            if (_eGoals[_goalSelector].IsComplete())
+            {
+                Console.WriteLine("This is done");
+            }
+            else
+            {
+                Console.WriteLine("Goal not completed");
+            }
+
+            foreach (Goal t in _eGoals)
+            {
+                // debug: Console.WriteLine($"{t.GetName()} = {t.GetPoints()} points.");
+
+                // If the goal is completed, then add to points total
                 if (t.IsComplete())
                 {
                     _totalPoints += int.Parse(t.GetPoints());
                 }
-                Console.WriteLine($"Points = {_totalPoints}");
             }
-
+            Console.WriteLine($">>> Points = {_totalPoints}");
         }
         public void SaveGoals(string file)
         {

@@ -3,22 +3,17 @@ namespace EternalQuest
 
     public class EternalGoal : Goal
     {
+        private bool _isComplete = false;
         public EternalGoal(string name, string description, string points) : base(name, description, points)
-        { }
-        public new void RecordEvent()
-        {
-            //todo:
-            // An event is completion of the goal
-            // It adds points.
-            // List open goals//
-
-
+        { 
         }
-        public new bool IsComplete()
+        public override void RecordEvent()
         {
-            //todo:
-            return true;
-
+            _isComplete = true;
+        }
+        public override bool IsComplete()
+        {
+            return _isComplete;
         }
         public override string GetStringRepresentation()
         {

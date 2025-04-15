@@ -3,17 +3,18 @@ namespace EternalQuest
 
  public class SimpleGoal : Goal
 {
-    private bool _isComplete;
+    private bool _isComplete = false;
     public SimpleGoal(string name, string description, string points) : base(name, description, points)
     {
         //todo:
     }
-    public new void RecordEvent()
+    public override void RecordEvent()
     {
         //todo:
+        _isComplete = true;
 
     }
-    public new bool IsComplete()
+    public override bool IsComplete()
     {
         //todo:
         return _isComplete;
@@ -22,7 +23,7 @@ namespace EternalQuest
     public override string GetStringRepresentation()
     {
         //todo:
-        return $"SimpleGoal:{this.GetName()},{this.GetDescription()},{this.GetPoints()}";
+        return $"SimpleGoal:{GetName()},{GetDescription()},{GetPoints()},{IsComplete()}";
     }
     public void completeIt()
     {

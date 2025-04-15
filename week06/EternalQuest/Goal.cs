@@ -16,14 +16,8 @@ namespace EternalQuest
             _points = points;
 
         }
-        public void RecordEvent()
-        {
-
-        }
-        public bool IsComplete()
-        {
-            return false;
-        }
+        public abstract void RecordEvent();
+        public abstract bool IsComplete();
         public string GetDetailsString()
         {
             return $"Name: {_shortName}\nDesc: {_description}\nPoints: {_points}";
@@ -43,6 +37,18 @@ namespace EternalQuest
         public string GetPoints()
         {
             return _points;
+        }
+        public string GetCheckbox()
+        {
+            if(IsComplete())
+            {
+                return "[X]";
+            }
+            else
+            {
+                return "[ ]";
+            }
+
         }
     }
 }
