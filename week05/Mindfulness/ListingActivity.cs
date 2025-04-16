@@ -1,6 +1,6 @@
 public class ListingActivity : Activity
 {
-    private int _count;
+    protected int _count;
     protected List<string> _alist = new List<string>();
     private List<string> _prompts;
     public ListingActivity(string name, string description)
@@ -41,6 +41,7 @@ public class ListingActivity : Activity
         {
             this.ShowCountDown(_duration);
         }
+
     Console.WriteLine("Enter your listing activity comments.");
     string input = Console.ReadLine();
     Console.WriteLine($"You entered: {input}");
