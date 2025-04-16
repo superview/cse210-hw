@@ -2,9 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 public class Activity
 {
-    private string _name;
-    private string _description;
-    private int _duration;
+    protected string _name;
+    protected string _description;
+    protected int _duration;
+    protected string _spinnerStyle;
     public Activity()
     {
 
@@ -49,5 +50,23 @@ public class Activity
         }
         // clear line
         Console.WriteLine("\r                                                  ");
+    }
+    public int InitializeTimer()
+    {
+        Console.WriteLine("Enter number of seconds for the activity: ");
+        string _response = Console.ReadLine();
+        if (int.TryParse(_response, out int _timer_length))
+        {
+            Console.WriteLine($"You entered {_timer_length} seconds ({_timer_length/60.0:F1} minutes).");
+        }
+        else
+        {
+            _timer_length = 1;
+        }
+        return _timer_length;
+    }
+    public void SetDuration(int duration)
+    {
+        _duration = duration;
     }
 }
