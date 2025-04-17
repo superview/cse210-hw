@@ -11,7 +11,9 @@ public class ReflectingActivity : Activity
             "What was your favorite thing to happen today?",
             "Who did you help today?",
             "What one thing did you give to help another?",
-            "How can you find someone to help out?"
+            "How can you find someone to help out?",
+            "What is one of your favorate scriptures?",
+            "What inspires you to holiness?"
         ];
 
     }
