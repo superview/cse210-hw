@@ -7,5 +7,8 @@ public abstract class Activity
         _date = DateTime.Now;
     }
     public abstract void GetSummary();
+    public abstract double GetDistance();
+    public abstract double GetSpeed();
+    public abstract double GetPace();
 
 }

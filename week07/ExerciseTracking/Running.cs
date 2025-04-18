@@ -1,7 +1,11 @@
+using System.Runtime.ConstrainedExecution;
+
 public class Running : Activity
 {
     //distance
     public double _distance;
+    protected double _speed;
+    protected double _pace;
     public Running(double distance, int minutes)
     {
         _distance = distance;
@@ -13,9 +17,22 @@ public class Running : Activity
         string date = _date.ToString("dd MMM yyyy");
         string activity = "Running";
         string distance = _distance.ToString();
-        double speed = (_distance / _minutes) * 60;
-        double pace = _minutes / _distance;
+        _speed = (_distance / _minutes) * 60;
+        _pace = _minutes / _distance;
 
-        Console.WriteLine($"{date} {activity} ({_minutes} min) - Distance {distance:F1} miles, Speed {speed:F1} mph, Pace: {pace:F2} min per mile");
+        Console.WriteLine($"{date} {activity} ({_minutes} min) - Distance {distance:F1} miles, Speed {_speed:F1} mph, Pace: {_pace:F2} min per mile");
+    }
+    public override double GetSpeed()
+    {
+        return _speed;
+    }
+    public override double GetDistance()
+    {
+        return _distance;
+    }
+    public override double GetPace()
+    {
+        return _pace;
+
     }
 }
